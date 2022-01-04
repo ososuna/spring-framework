@@ -1,5 +1,9 @@
 package com.studying.springboot.springbootweb.controller;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import com.studying.springboot.springbootweb.model.User;
 
 import org.springframework.stereotype.Controller;
@@ -19,16 +23,37 @@ public class IndexController {
 
   @GetMapping("/profile")
   public String profile(Model model) {
+    
     User user = new User();
     user.setName("Andy");
     user.setLastName("Alonso");
+    user.setEmail("vally@test.com");
+    
     model.addAttribute("user", user);
+    
     StringBuilder data = new StringBuilder();
+    
     data.append(user.getName());
     data.append(" ");
     data.append(user.getLastName());
     model.addAttribute("title", "Hello: ".concat(data.toString()));
+    
     return "profile";
+  }
+
+  @GetMapping("/list")
+  public String list(Model model) {
+
+    List<User> users = Arrays.asList(
+      new User("Andy", "Alonso", "vally@test.com"),
+      new User("John", "Yakimeshi", "john@test.com"),
+      new User("Jefferson", "Gutierritos", "john@test.com")
+    );
+
+    model.addAttribute("title", "Users list");
+    model.addAttribute("users", users);
+
+    return "list";
   }
 
 }
