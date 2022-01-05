@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Send request params from URL</title>
+</head>
+<body>
+  <h1>Send request params from URL</h1>
+  <ul>
+    <li>
+      <a th:href="@{/params/string(text='hello from index')}">
+        /params/string?text=hello from index
+      </a>
+    </li>
+    <li>
+      <a th:href="@{/params/string(text='hello from spring boot')}">
+        /params/string?text=hello from spring boot
+      </a>
+    </li>
+    <li>
+      <a th:href="@{/params/mix-params(text='hello from spring boot', number=12)}">
+        /params/mix-params?text=hello from spring boot&number=12
+      </a>
+    </li>
+  </ul>
+</body>
+</html>
