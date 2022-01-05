@@ -1,6 +1,5 @@
 package com.studying.springboot.springbootweb.controller;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -9,6 +8,7 @@ import com.studying.springboot.springbootweb.model.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -43,17 +43,18 @@ public class IndexController {
 
   @GetMapping("/list")
   public String list(Model model) {
+    model.addAttribute("title", "Users list");
+    return "list";
+  }
 
+  @ModelAttribute("users")
+  public List<User> getUsers() {
     List<User> users = Arrays.asList(
       new User("Andy", "Alonso", "vally@test.com"),
       new User("John", "Yakimeshi", "john@test.com"),
       new User("Jefferson", "Gutierritos", "john@test.com")
     );
-
-    model.addAttribute("title", "Users list");
-    model.addAttribute("users", users);
-
-    return "list";
+    return users;
   }
 
 }
