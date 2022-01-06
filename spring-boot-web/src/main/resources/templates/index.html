@@ -5,9 +5,13 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title th:text="${title}"></title>
+  <link rel="stylesheet" th:href="@{/css/styles.css}" />
 </head>
 <body>
-  <h1 th:text="${title}"></h1>
+  <h1 class="color-red" th:text="${title}"></h1>
+  <hr>
+  <h2 class="color-blue">Static resources CSS</h2>
+  <img th:src="@{/img/rengoku.jpeg}" alt="image">
   <table th:if="${!users.isEmpty()}">
     <thead>
       <tr>
