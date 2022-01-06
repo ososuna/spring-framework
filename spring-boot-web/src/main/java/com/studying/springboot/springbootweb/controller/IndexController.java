@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.studying.springboot.springbootweb.model.User;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,9 +16,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/app")
 public class IndexController {
 
+  @Value("${text.indexcontroller.index.title}")
+  private String textIndex;
+  
+  @Value("${text.indexcontroller.profile.title}")
+  private String textProfile;
+  
+  @Value("${text.indexcontroller.list.title}")
+  private String textList;
+
   @GetMapping({"", "/index", "/", "/home"})
   public String index(Model model) {
-    model.addAttribute("title", "Hello Spring Boot!");
+    model.addAttribute("title", textIndex);
     return "index";
   }
 
@@ -36,14 +46,14 @@ public class IndexController {
     data.append(user.getName());
     data.append(" ");
     data.append(user.getLastName());
-    model.addAttribute("title", "Hello: ".concat(data.toString()));
+    model.addAttribute("title", textProfile.concat(data.toString()));
     
     return "profile";
   }
 
   @GetMapping("/list")
   public String list(Model model) {
-    model.addAttribute("title", "Users list");
+    model.addAttribute("title", textList);
     return "list";
   }
 
